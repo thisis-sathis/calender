@@ -5,52 +5,6 @@ import { format, isSameMonth, isToday, getDay } from "date-fns";
 
 const CalendarDay = ({ date, today, eventsList, colStartClasses }) => {
   const formattedDate = format(date, 'dd-MM-yyyy'); 
-  console.log("eventsList day", eventsList, formattedDate, eventsList[formattedDate])
-  var eventsForTheDate = [ //eventsList[formattedDate]
-    {
-        "startTime": "08:00",
-        "endTime": "09:00",
-        "color": "#f6be23",
-        "title": "Morning Meeting"
-    },
-    {
-        "startTime": "13:00",
-        "endTime": "14:30",
-        "color": "#f650le",
-        "title": "Lunch with Team"
-    },
-    {
-        "startTime": "17:00",
-        "endTime": "18:30",
-        "color": "#9c27b0",
-        "title": "Project Review"
-    },
-    {
-        "startTime": "10:00",
-        "endTime": "11:30",
-        "color": "#2196f3",
-        "title": "Client Meeting"
-    },
-    {
-        "startTime": "15:00",
-        "endTime": "17:00",
-        "color": "#f44336",
-        "title": "Development Workshop"
-    },
-    {
-        "startTime": "10:00",
-        "endTime": "11:30",
-        "color": "#2196f3",
-        "title": "Client Meeting"
-    },
-    {
-        "startTime": "15:00",
-        "endTime": "17:00",
-        "color": "#f44336",
-        "title": "Development Workshop"
-    }
-];
-
   return (
     <div className={colStartClasses[getDay(date)]}>
       <p
