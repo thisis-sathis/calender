@@ -1,7 +1,6 @@
 import React from "react";
 import { format } from "date-fns";
 import CalendarNavigation from "./CalendarNavigation";
-import ImportEvents from "../events_features/ImportEvents";
 
 const CalendarHeader = ({ date, getNextMonth, importEventsCallback, getPrevMonth, addEventsCallback }) => {
   return (

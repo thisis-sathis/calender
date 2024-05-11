@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import { format, isSameMonth, isToday, getDay } from "date-fns";
+import { format, isToday, getDay } from "date-fns";
 
 const CalendarDay = ({ date, today, eventsList, updateDate, colStartClasses }) => {
   const formattedDate = format(date, 'dd-MM-yyyy'); 
