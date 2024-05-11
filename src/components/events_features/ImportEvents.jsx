@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateEvents } from "../../actions/eventsActions";
+import { importEvents } from "../../actions/eventsActions";
 import { toast } from "react-toastify";
 
 const ImportEvents = ({setshowImportTextbox, importEventsCallback, showImportTextbox}) => {
@@ -18,19 +18,18 @@ const ImportEvents = ({setshowImportTextbox, importEventsCallback, showImportTex
       try {
         const eventsListData = JSON.parse(eventsData);
         if (
-          typeof eventsListData === "object" &&
-          Object.values(eventsListData).length === 1 && // Only one value corresponding to the date key
-          Array.isArray(Object.values(eventsListData)[0]) && // Array of events
-          Object.values(eventsListData)[0].every((event) =>
-            typeof event.startTime === "string" &&
-            typeof event.endTime === "string" &&
-            typeof event.color === "string" &&
-            typeof event.title === "string" &&
-            /^\d{2}:\d{2}$/.test(event.startTime) &&
-            /^\d{2}:\d{2}$/.test(event.endTime)
+          typeof eventsListData === "object" && // Check if it's an object
+          Object.values(eventsListData).flat().every(event => // Check each event in all arrays
+            typeof event.startTime === "string" && // Check if startTime is a string
+            typeof event.endTime === "string" && // Check if endTime is a string
+            typeof event.color === "string" && // Check if color is a string
+            typeof event.title === "string" && // Check if title is a string
+            /^\d{2}:\d{2}$/.test(event.startTime) && // Check startTime format
+            /^\d{2}:\d{2}$/.test(event.endTime) // Check endTime format
           )
         ) {
-          dispatch(updateEvents(eventsListData));
+          console.log("eventsListData", eventsListData, importEvents)
+          dispatch(importEvents(eventsListData));
           setshowImportTextbox(!showImportTextbox);
           setEventsData("");
   

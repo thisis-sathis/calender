@@ -51,14 +51,16 @@ function Calendar() {
     setshowImportTextbox(!showImportTextbox);
   };
 
-  
+  const updateDate = (date) => {
+    setEventDate(date);
+  };
   console.log("eventsList", eventsList[eventDate]);
   return (
     <div>
       <div className="p-4 w-screen mb-20 flex items-center mt-10 flex-col justify-center overflow-y-scroll">
         <div className="w-[1000px]">
           {( showEventCard || eventsList[eventDate]) && (
-            <EventCard onSave={handleSaveEvent} eventsList={eventsList[eventDate] || []} onCancel={handleCancelEvent} />
+            <EventCard onSave={handleSaveEvent} eventDate={eventDate} eventsList={eventsList[eventDate] || []} onCancel={handleCancelEvent} />
           )}
           {showImportTextbox  && (
             <ImportEvents showImportTextbox={showImportTextbox} importEventsCallback={importEventsCallback}  setshowImportTextbox={setshowImportTextbox}/>
@@ -75,7 +77,7 @@ function Calendar() {
           <hr className="my-6" />
           <div className="grid grid-cols-7 gap-6 sm:gap-12 mt-8 place-items-center">
             {daysInMonth.map((day, idx) => (
-              <CalendarDay  eventsList={eventsList} key={idx} date={day} colStartClasses={colStartClasses} today={today} />
+              <CalendarDay  updateDate={updateDate} eventsList={eventsList} key={idx} date={day} colStartClasses={colStartClasses} today={today} />
             ))}
           </div>
         </div>

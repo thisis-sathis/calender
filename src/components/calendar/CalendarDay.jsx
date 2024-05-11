@@ -3,11 +3,11 @@
 import React from "react";
 import { format, isSameMonth, isToday, getDay } from "date-fns";
 
-const CalendarDay = ({ date, today, eventsList, colStartClasses }) => {
+const CalendarDay = ({ date, today, eventsList, updateDate, colStartClasses }) => {
   const formattedDate = format(date, 'dd-MM-yyyy'); 
   return (
-    <div className={colStartClasses[getDay(date)]}>
-      <p
+    <div onClick={() => updateDate(formattedDate)} className={`cursor-pointer ${colStartClasses[getDay(date)]}`}>
+      <span 
         className={`cursor-pointer flex items-center mb-10 font-tenon justify-center h-8 w-8 rounded-full 
         hover:text-white text-gray-900 ${!isToday(date) && "hover:bg-liteGrey"} ${
           isToday(date) && "bg-customGreen text-white"
@@ -15,7 +15,7 @@ const CalendarDay = ({ date, today, eventsList, colStartClasses }) => {
       >
         {format(date, "d")}
 
-      </p>
+      </span>
       {
         eventsList[formattedDate] && eventsList[formattedDate].slice(0, 2).map((event, index) => (
           <div
