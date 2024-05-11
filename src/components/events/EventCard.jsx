@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { format } from "date-fns";
 import { useDispatch } from "react-redux";
-import { addEvents, importEvents } from "../../actions/eventsActions";
+import { addEvents } from "../../actions/eventsActions";
 
 const EventCard = ({ eventsList, onSave, eventDate, onCancel }) => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
